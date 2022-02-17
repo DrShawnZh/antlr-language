@@ -11,7 +11,7 @@
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "program": "/Users/zhangxiang/projects/antlr-language/tmp/group/index.js"
+      "program": "/Users/zhangxiang/projects/antlr-language/tmp/json/index.js"
     }
   ]
 }

@@ -1,27 +1,27 @@
 grammar Json;
 
-json: object    # Obj
-  | array       # Arr
+json: object
+  | array
   ;
 
 
-object: '{' pair '}'
-  | '{' '}' // 空对象
+object: '{' pair (',' pair)* '}'  # AnObj
+  | '{' '}'                       # EmptyObj
   ;
 
 pair: STRING ':' value;
 
-array: '[' value (',' value)* ']'
-  | '[' ']'
+array: '[' value (',' value)* ']' # AnArray
+  | '[' ']'                       # EmptyArray
   ;
 
-value: STRING
-  | NUMBER
-  | object
-  | array
-  | 'true'
-  | 'false'
-  | 'null'
+value: STRING   # String
+  | NUMBER      # Atom
+  | object      # Obj
+  | array       # Arr
+  | 'true'      # Atom
+  | 'false'     # Atom
+  | 'null'      # Atom
   ;
 
 STRING: '"' (ESC | ~["\\])* '"';
@@ -34,5 +34,5 @@ NUMBER: '-'? INT '.' INT EXP?
   | '-'? INT
   ;
 
-fragment INT: '0' [1-9] [0-9]*;
+fragment INT: '0' | [1-9] [0-9]*;
 fragment EXP: [Ee] [+\-]? INT;
